@@ -1,0 +1,32 @@
+<div class="feature-products">
+    <h2>Featured Products</h2>
+    <div class="feature-prod">
+        {% for product in collections['frontpage'].products %}
+            <div class="elem-feature-prod">
+                {% render 'product-item', product: product %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<style>
+.feature-prod{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    
+    justify-content:center;
+}
+.elem-feature-prod{
+    padding:0px 15px 20px 15px;
+}
+.feature-products{
+    background-color: #F5F5F5;
+    text-align:center;
+    padding-top: 30px;
+}
+.feature-products h2{
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 42px;
+}
+</style>

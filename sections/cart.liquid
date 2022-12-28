@@ -1,0 +1,65 @@
+<div class="cart">
+    {%form 'cart', cart%}
+        <h1>Cart</h1>
+        {%if cart.empty? %}
+            <p>Your cart is empty!</p>
+        {%else%}
+            {% for item in cart.items%}
+                <div class="cart-item">
+                    <div class="cart-item-div"> 
+                        <img src="{{item.image | image_url : width: 200}}"/>
+                        <h2>{{item.title}}</h2>
+                    </div>
+                    <div>
+                        <p>{{item.final_line_price | money}}</p> 
+                        <input class="product-select" name="updates[]" value="{{item.quantity}}">
+                        <a href="{{item.url_to_remove}}">Remove</a>
+                    </div>
+                </div>
+            {%endfor%}
+                <hr/>
+                <div class="total-cart">
+                    <p>Total: {{cart.total_price | money}}</p>
+                    <button type="submit" name="update" class="product-add">
+                        Update
+                    </button>
+                    <button type="submit" name="checkout" class="product-add">
+                        checkout
+                    </button>
+                </div>
+        {% endif %}
+    {% endform %}
+</div>
+<style>
+.total-cart{
+    padding-left: 70%;
+}
+.cart{
+    background-color: white;
+}
+.cart-item-div{
+    width:40%;
+}
+.cart h1{
+    text-align:center;
+}
+.cart-item{
+    padding-left:40px;
+    display:flex;
+    justify-content: felx-start;
+}
+.cart p{
+    font-size: 24px;
+    color:#464B90;
+}
+</style>
+{% schema %}
+{
+    "name":"Cart",
+    "presets":[
+        {
+            "name":"Cart"
+        }
+    ]
+}
+{%endschema%}

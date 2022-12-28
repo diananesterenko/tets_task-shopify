@@ -1,0 +1,111 @@
+<div class="product">
+    <div class="section-product">
+        <div class='product-left'>
+            {% for image in product.images%}
+                <img src="{{image | image_url: master}}"/>
+            {%endfor%}
+
+        </div>
+
+        <div class="product-right">
+            <h1>{{product.title}} <h1>
+            <div class='product-prices'>
+                
+                <h4 class="product-price">
+                    
+                    
+                    {{product.price | money}}
+                    <label class="max_price">{{product.compare_at_price | money}}</label>
+               
+                </h4>
+            </div>
+        
+
+
+            {%form 'product', product %}
+                <div class="product-option">
+                    <label for="product-select">Variant</label>
+                    <select class="product-select" id="product-select" name="id">
+                        
+                        {%for variant in product.variants%}
+                        
+                            <option value={{variant.id}}>
+                                
+                                {{variant.title}}
+                            </option>
+                        {%endfor%}
+                    </select>
+                </div>
+
+                <div class="product-option">
+                    <label for="quantity">Quantity</label>
+                    <input id="quantity" name="quantity" value="1" class="product-select">
+                </div>
+                <button type="submit" class="product-add"><p>Add to cart</p> </button>
+            {%endform%}
+        </div>
+    </div>
+</div>
+{%stylesheet%}
+.max_price{
+    font-size:30px;
+    text-decoration:line-through;
+}
+.product-select{
+    margin: 0px 5px;
+    color: white;
+    background-color:#e3e4eb;
+    border-radius: 40px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 26px;
+    color: #464B90;
+    padding:7px 22px;
+}
+h1{
+    font-size: 42px;
+}
+label{
+    font-size: 32px;
+    color: #464B90;
+}
+.section-product{
+     display: flex;
+    flex-direction: row;
+    align-items:center; 
+    justify-content: space-around ;
+}
+.product-right{
+    text-align: left;
+
+}
+.product-add{
+    margin-top: 20px;
+    box-sizing: border-box;
+    width: 285px;
+    height: 62px;
+    background: #464B90;
+    border: 1px solid #464B90;
+    border-radius: 40px;
+   
+}
+p{
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #FFFFFF;
+}
+{%endstylesheet%}
+
+
+{% schema %}
+{
+    "name":"Product",
+    "presets":[
+        {
+            "name":"Product"
+        }
+    ]
+}
+{%endschema%}

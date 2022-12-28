@@ -1,0 +1,77 @@
+<div class="product-item">
+    <a href="{{product.url}}">
+        <img src="{{ product.featured_image | image_url : width: 520, height: 340}}"/>
+        <h3>{{product.title}}</h3>
+        <div class="variants-all">
+            {%for variant in product.variants%}
+                <option class="variants" value={{variant.id}}>
+                 <p>{{variant.title}}</p>
+                    
+                </option>
+            
+            {%endfor%}
+        </div>
+        <button class="but-prod-item"><p>Add to cart {{product.price | money}}</p></button>
+    </a>
+</div>
+<style>
+
+.variants-all{
+     display: flex;
+     align-items:center;
+    text-align: center;
+    
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.product-item h3{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 42px;
+    color: #656874;
+}
+a{
+    text-decoration: none;
+}
+.product-item{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    text-align: center;
+    background-color:  #F5F5F5;
+}
+.h3{
+  background: #656874;
+
+}
+.but-prod-item p{
+    margin: 0px;
+    }
+.but-prod-item{
+    padding: 10px;
+    color:#FFFFFF;
+    box-sizing: border-box;
+    width: 285px;
+    height: 62px;
+    background-color: #464B90;
+    border: 1px solid #464B90;
+    border-radius: 40px;
+}
+
+.variants{
+   margin: 0px 5px;
+    color: white;
+    background-color:#e3e4eb;
+    border-radius: 40px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 26px;
+    color: #464B90;
+    padding:7px 22px;
+    
+    
+}
+
+</style>
